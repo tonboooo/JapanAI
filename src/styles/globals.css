@@ -1,0 +1,511 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 39 20% 92%; /* アマン東京風のベージュ背景 */
+    --foreground: 20 14.3% 4.1%;
+    --card: 39 25% 95%; /* アマン東京風のカード背景 */
+    --card-foreground: 20 14.3% 4.1%;
+    --popover: 39 25% 95%;
+    --popover-foreground: 20 14.3% 4.1%;
+    --primary: 47.9 95.8% 53.1%;
+    --primary-foreground: 26 83.3% 14.1%;
+    --secondary: 60 4.8% 95.9%;
+    --secondary-foreground: 24 9.8% 10%;
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+    --accent: 43 60% 63%; /* 透明感のある金色 */
+    --accent-foreground: 30 43% 20%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 142 70.6% 45.3%;
+    --radius: 0.5rem;
+
+    /* 和紙生成色 */
+    --washi-50: 48 30% 96%;
+    --washi-100: 48 30% 92%;
+    --washi-200: 48 25% 85%;
+    --washi-300: 48 20% 80%;
+    --washi-400: 48 15% 75%;
+    --washi-500: 48 15% 65%;
+    --washi-600: 48 15% 55%;
+    --washi-700: 48 15% 45%;
+    --washi-800: 48 15% 35%;
+    --washi-900: 48 15% 25%;
+
+    /* 輝翠（きすい） */
+    --kisui-50: 160 30% 93%;
+    --kisui-100: 160 30% 86%;
+    --kisui-200: 160 30% 72%;
+    --kisui-300: 160 30% 58%;
+    --kisui-400: 160 30% 44%;
+    --kisui-500: 160 30% 30%;
+    --kisui-600: 160 30% 24%;
+    --kisui-700: 160 30% 18%;
+    --kisui-800: 160 30% 12%;
+    --kisui-900: 160 30% 6%;
+
+    /* 呂色（ろいろ） */
+    --ro-50: 0 0% 96%;
+    --ro-100: 0 0% 88%;
+    --ro-200: 0 0% 76%;
+    --ro-300: 0 0% 64%;
+    --ro-400: 0 0% 52%;
+    --ro-500: 0 0% 40%;
+    --ro-600: 0 0% 30%;
+    --ro-700: 0 0% 20%;
+    --ro-800: 0 0% 11%;
+    --ro-900: 0 0% 4%;
+    
+    /* 金色カラーパレット - 透明感と上品さを持つ金色 */
+    --gold-50: 43 80% 96%;
+    --gold-100: 43 75% 90%;
+    --gold-200: 43 70% 82%;
+    --gold-300: 43 65% 72%;
+    --gold-400: 43 60% 63%;
+    --gold-500: 43 55% 55%;
+    --gold-600: 43 50% 45%;
+    --gold-700: 43 45% 35%;
+    --gold-800: 43 40% 25%;
+    --gold-900: 43 35% 15%;
+  }
+
+  [data-theme="dark"] {
+    --background: 20 14.3% 4.1%;
+    --foreground: 60 9.1% 97.8%;
+    --card: 20 14.3% 4.1%;
+    --card-foreground: 60 9.1% 97.8%;
+    --popover: 20 14.3% 4.1%;
+    --popover-foreground: 60 9.1% 97.8%;
+    --primary: 47.9 95.8% 53.1%;
+    --primary-foreground: 26 83.3% 14.1%;
+    --secondary: 12 6.5% 15.1%;
+    --secondary-foreground: 60 9.1% 97.8%;
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+    --accent: 142 70.6% 45.3%;
+    --accent-foreground: 144 61% 20%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 12 6.5% 15.1%;
+    --input: 12 6.5% 15.1%;
+    --ring: 142 70.6% 45.3%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Noto Serif JP', '游明朝', 'Yu Mincho', 'Hiragino Mincho ProN', 'HG明朝E', 'MS P明朝', 'MS 明朝', Georgia, 'Times New Roman', serif;
+    font-feature-settings: "palt";
+  }
+
+  /* スキップリンク */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-background focus:text-foreground focus:outline-none focus:ring-2 focus:ring-accent;
+  }
+
+  /* フォーカスアウトライン */
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-background;
+  }
+
+  /* クリティカルCSS */
+  .critical-css {
+    display: block;
+  }
+}
+
+@layer components {
+  .container-wide {
+    @apply container mx-auto px-6 lg:px-12;
+  }
+  
+  /* 金色のホバーエフェクト - 上品で透明感のある金色 */
+  .gold-hover-effect {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  
+  .gold-hover-effect:hover {
+    box-shadow: 0 0 15px rgba(191, 163, 75, 0.3);
+    border-color: rgba(191, 163, 75, 0.8) !important;
+  }
+  
+  /* 綺麗な金色のラインエフェクト */
+  .gold-line-effect {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(230, 215, 185, 0.3), 
+      rgba(212, 175, 55, 0.6), 
+      rgba(230, 215, 185, 0.3), 
+      transparent
+    );
+    transition: all 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transform: translateX(-50%);
+    opacity: 0;
+    filter: blur(0.5px);
+  }
+  
+  .gold-hover-effect:hover .gold-line-effect {
+    width: 100%;
+    opacity: 1;
+  }
+  
+  /* スライドエフェクト - 高級感を出すための追加エフェクト */
+  .gold-hover-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(191, 163, 75, 0.1);
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  
+  .gold-hover-effect:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  
+  /* 金色の波紋アニメーション - 澄み切った透明感 */
+  @keyframes goldRipple {
+    0% {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0.4;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    50% {
+      opacity: 0.3;
+      border: 1px solid rgba(212, 175, 55, 0.1);
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(2);
+      opacity: 0;
+      border: 1px solid rgba(212, 175, 55, 0);
+    }
+  }
+  
+  .animate-ripple {
+    animation: goldRipple 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    backdrop-filter: blur(1px);
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, rgba(212, 175, 55, 0.1) 60%, transparent 100%);
+  }
+  
+  /* シンプルなボタンスタイル */
+  button {
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  button:hover {
+    /* ホバー時のシンプルなエフェクトのみを適用 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* ダークモード用エメラルドグリーンボタン */
+  :root[class~="dark"] .btn-emerald {
+    background-color: rgba(16, 185, 129, 0.9);
+    color: white;
+    border-color: rgba(16, 185, 129, 0.2);
+  }
+  
+  :root[class~="dark"] .btn-emerald:hover {
+    background-color: rgba(16, 185, 129, 1);
+    border-color: rgba(16, 185, 129, 0.5);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+    transform: none; /* 横に伸びる問題を修正 */
+  }
+  
+  :root[class~="dark"] .btn-emerald-outline {
+    background-color: transparent;
+    color: rgba(16, 185, 129, 0.9);
+    border-color: rgba(16, 185, 129, 0.5);
+  }
+  
+  :root[class~="dark"] .btn-emerald-outline:hover {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: rgba(16, 185, 129, 1);
+    border-color: rgba(16, 185, 129, 0.8);
+    transform: none; /* 横に伸びる問題を修正 */
+  }
+  
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+  
+  /* ContactCtaSectionと同じ背景色を使うクラス */
+  .section-bg-unified {
+    @apply bg-secondary/40;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* 高級感のあるセクション背景用装飾 */
+  .section-bg-unified::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+    z-index: 0;
+  }
+  
+  .heading-xl {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tighter;
+  }
+  
+  .heading-lg {
+    @apply text-3xl md:text-4xl font-bold leading-tight;
+  }
+  
+  .heading-md {
+    @apply text-2xl md:text-3xl font-bold leading-snug;
+  }
+  
+  .heading-sm {
+    @apply text-xl md:text-2xl font-semibold leading-snug;
+  }
+  
+  .paragraph {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+  
+  .paragraph-sm {
+    @apply text-sm leading-relaxed;
+  }
+  
+  .link {
+    @apply text-accent hover:text-accent/80 underline underline-offset-4 transition-colors;
+  }
+  
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors 
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2
+    disabled:opacity-50 disabled:pointer-events-none;
+  }
+  
+  .btn-primary {
+    @apply btn bg-accent text-accent-foreground hover:bg-accent/90 h-10 px-4 py-2;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2;
+  }
+  
+  .btn-outline {
+    @apply btn border border-input hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2;
+  }
+  
+  .btn-ghost {
+    @apply btn hover:bg-accent/10 hover:text-accent h-10 px-4 py-2;
+  }
+  
+  .btn-link {
+    @apply btn underline-offset-4 hover:underline text-accent hover:text-accent/80 p-0 h-auto;
+  }
+  
+  .btn-icon {
+    @apply btn h-10 w-10 p-0;
+  }
+  
+  /* ダークモードでは黄色の代わりにエメラルドグリーンを使用 */
+  :root[class~="dark"] .btn-primary {
+    background-color: rgba(16, 185, 129, 0.9);
+    color: white;
+    border-color: rgba(16, 185, 129, 0.2);
+  }
+  
+  :root[class~="dark"] .btn-primary:hover {
+    background-color: rgba(16, 185, 129, 1);
+    border-color: rgba(16, 185, 129, 0.5);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+    transform: none;
+  }
+}
+
+/* モーション設定 */
+/* --- グロー演出 --- */
+.glow-gold {
+  position: relative;
+  z-index: 1;
+}
+.glow-gold::after {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    circle, 
+    rgba(230, 215, 185, 0.2) 0%, 
+    rgba(212, 184, 106, 0.25) 25%, 
+    rgba(212, 175, 55, 0.15) 50%, 
+    transparent 80%
+  );
+  filter: blur(2px);
+  z-index: -1;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.glow-gold:hover::after {
+  opacity: 1;
+}
+
+.glow-emerald {
+  position: relative;
+  z-index: 1;
+}
+.glow-emerald::after {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(64,224,208,0.18) 0%, transparent 80%);
+  z-index: -1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* スクロールバー */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/30 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground/50;
+}
+
+/* Lyon Display Web フォント - 見出し用 */
+@font-face {
+  font-family: 'Lyon Display Web';
+  font-style: normal;
+  font-weight: 500; /* Medium */
+  font-display: swap;
+  src: url('/fonts/LyonDisplay-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Lyon Display Web';
+  font-style: normal;
+  font-weight: 700; /* Bold */
+  font-display: swap;
+  src: url('/fonts/LyonDisplay-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Lyon Display Web';
+  font-style: normal;
+  font-weight: 900; /* Black */
+  font-display: swap;
+  src: url('/fonts/LyonDisplay-Black.woff2') format('woff2');
+}
+
+/* Lyon Text Web フォント - 本文用 */
+@font-face {
+  font-family: 'Lyon Text Web';
+  font-style: normal;
+  font-weight: 400; /* Regular No.2 */
+  font-display: swap;
+  src: url('/fonts/LyonText-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Lyon Text Web';
+  font-style: normal;
+  font-weight: 600; /* Semibold */
+  font-display: swap;
+  src: url('/fonts/LyonText-Semibold.woff2') format('woff2');
+}
+
+/* Noto Sans JP フォント (フォールバック用) */
+@font-face {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/NotoSansJP-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/NotoSansJP-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/NotoSansJP-Bold.woff2') format('woff2');
+}
+
+/* フォント設定 */
+html {
+  /* フォールバックフォントを含めた全体のフォント設定 */
+  font-family: 'Lyon Text Web', var(--font-noto-serif-jp), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', serif;
+}
+
+/* 見出し用フォント設定 - アマン東京風の高級感 */
+h1, h2 {
+  font-family: var(--font-playfair), 'Lyon Display Web', var(--font-noto-serif-jp), serif;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+}
+
+h3, h4, h5, h6 {
+  font-family: var(--font-cormorant), 'Lyon Display Web', var(--font-noto-serif-jp), serif;
+  letter-spacing: 0.01em;
+  font-weight: 500;
+}
+
+/* 見出しの高級感を強調 */
+h1 {
+  font-weight: 700;
+}
+
+h2 {
+  font-weight: 600;
+}

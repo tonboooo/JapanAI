@@ -1,0 +1,62 @@
+/* 書道風フォント用のCSS */
+@font-face {
+  font-family: 'Shippori Mincho';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&display=swap');
+}
+
+.shodo-title {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.shodo-title-large {
+  font-size: 4rem;
+  line-height: 1.1;
+}
+
+.shodo-title-medium {
+  font-size: 3rem;
+  line-height: 1.2;
+}
+
+.shodo-brush-effect {
+  position: relative;
+  display: inline-block;
+  transform: skewX(-5deg);
+}
+
+.shodo-brush-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/brush-stroke.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+  z-index: -1;
+}
+
+/* 筆の流れるような動きを表現 */
+.shodo-stroke {
+  position: relative;
+  display: inline-block;
+  border-bottom: 5px solid currentColor;
+  opacity: 0.85;
+  padding-bottom: 0.1em;
+}
+
+/* 縦書きスタイル（必要に応じて） */
+.shodo-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}

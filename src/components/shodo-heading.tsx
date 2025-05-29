@@ -146,7 +146,7 @@ export default function ShodoHeading({ text, size = 'large', className = '' }: S
         // 各文字の特別なスタイル設定
         const charStyle = {
           display: 'inline-block',
-          position: 'relative',
+          position: 'relative' as const,
           fontFamily: '"Shippori Mincho", serif',
           fontWeight: 900,
           fontSize: size === 'large' ? '8.5rem' : '5.5rem',
@@ -158,7 +158,7 @@ export default function ShodoHeading({ text, size = 'large', className = '' }: S
           margin: '0 0.03em',
           transform: `rotate(${charProperties[index].rotate}deg)`,
           transformOrigin: 'center bottom'
-        };
+        } as const;
         
         return (
           <motion.span
